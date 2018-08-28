@@ -1,0 +1,16 @@
+body {
+  height: 100vh;
+}
+
+h1 {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: italic;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 900
+}
+
+.jumbotron {
+  background-color: #f06d06
+}
