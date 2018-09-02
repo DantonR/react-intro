@@ -24,11 +24,17 @@ class App extends Component {
       text: 'HELLO WORLD',
       style: 'empty',
       jumboClass: 'jumbotron text-center',
-      darkTheme: false
+      darkTheme: false,
+      editID: 0,
+      buttonText: 'Add New Item',
+      editingValue: ''
     } // this.state end
 
     this.changeText = this.changeText.bind(this)
     this.addNewItemToList = this.addNewItemToList.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
+    this.handleChangeText = this.handleChangeText.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
   } // constructor end
 
   render(){
@@ -37,12 +43,22 @@ class App extends Component {
         <div className={this.state.jumboClass}>
           <h1 className={this.state.style}>Shopping List</h1>
           <h3>{this.state.text}</h3>
-          <ShoppingList list={this.state.list}/>
+          <ShoppingList 
+            list={this.state.list}
+            editItem={this.handleEdit}
+            deleteItem={this.handleDelete}
+          />
           <hr />
 
-          <Form addNew={this.addNewItemToList}></Form>
+          <Form
+            {...this.state} 
+            addNew={this.addNewItemToList}
+            updatingItem={this.handleUpdate}
+            changeText={this.handleChangeText}
+          ></Form>
           <button onClick={this.changeText}>Change state of H3</button>
           <button onClick={this.changeStyle}>Change style</button>
+          <button onClick={this.removeItem}>Remove Item</button>
         </div>
       </div>
     )
@@ -82,10 +98,46 @@ class App extends Component {
     this.setState({list: this.state.list.concat(newItem)} )
   }
 
+  handleEdit(itemToEdit){
+    console.log('working');
+    
+    this.setState({
+      editID: itemToEdit.id,
+      buttonText: 'Edit Item',
+      editingValue: itemToEdit.item
+    })
+    
+  }
+
+  handleUpdate(updatedItem){
+    var allItems = this.state.list
+    for (let i = 0; i < allItems.length; i++) {
+      if(allItems[i].id == updatedItem.id) {
+        allItems[i].item = updatedItem.item
+        break
+      }
+    }
+    this.setState({
+      list: allItems,
+      editID: 0,
+      buttonText: 'Add New Item',
+      editingValue: ''
+    })
+  }
+      
+
+  handleChangeText(inputValue){
+    this.setState({
+      editingValue: inputValue
+    })
+  }
+
   changeStyle(e) {
     e.preventDefault();
     this.setState({style: 'display-4'})
   }
+
+
 } // component ends
         
 
@@ -96,13 +148,23 @@ class ShoppingList extends Component {
         <ul className="list-group">
           {
             this.props.list.map(product => {
-              return <li key={product.id} product={product} className="list-group-item">{product.item}</li>
+              return <li key={product.id} product={product} className="list-group-item">{product.item}<span className="controls"> <span className="edit" onClick={this.edit.bind(this, product)}>Edit</span> <span className="delete" onClick={this.delete.bind(this, product)}>Delete</span></span></li>
             })
           }
           
         </ul>
       </div>
     )
+  }
+
+  edit(product) {
+    this.props.editItem(product)
+  }
+
+  delete(product) {
+    console.log('you are deleting');
+    console.log(product);
+    
   }
 }
 
