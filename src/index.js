@@ -35,6 +35,7 @@ class App extends Component {
     this.handleEdit = this.handleEdit.bind(this)
     this.handleChangeText = this.handleChangeText.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleDelete =this.handleDelete.bind(this)
   } // constructor end
 
   render(){
@@ -53,7 +54,7 @@ class App extends Component {
           <Form
             {...this.state} 
             addNew={this.addNewItemToList}
-            updatingItem={this.handleUpdate}
+            updateItem={this.handleUpdate}
             changeText={this.handleChangeText}
           ></Form>
           <button onClick={this.changeText}>Change state of H3</button>
@@ -109,10 +110,25 @@ class App extends Component {
     
   }
 
+  handleDelete(itemToDelete){
+    console.log(itemToDelete);
+    var allItems = this.state.list;
+    for (var i = 0; i < allItems.length; i++) {
+        if(allItems[i].id === itemToDelete.id){
+            allItems.splice(i, 1);
+            break;
+        }
+    }
+    for (var j = 0; j < allItems.length; j++) {
+        allItems[j].id = j+1;
+    }
+    this.setState({list: allItems});
+  }
+
   handleUpdate(updatedItem){
     var allItems = this.state.list
     for (let i = 0; i < allItems.length; i++) {
-      if(allItems[i].id == updatedItem.id) {
+      if(allItems[i].id === updatedItem.id) {
         allItems[i].item = updatedItem.item
         break
       }
@@ -124,6 +140,8 @@ class App extends Component {
       editingValue: ''
     })
   }
+
+
       
 
   handleChangeText(inputValue){
@@ -162,8 +180,7 @@ class ShoppingList extends Component {
   }
 
   delete(product) {
-    console.log('you are deleting');
-    console.log(product);
+    this.props.deleteItem(product)
     
   }
 }
