@@ -21,7 +21,7 @@ class App extends Component {
           item: 'Bananas'
         }
       ], // list array end
-      text: 'HELLO WORLD',
+      text: 'Lets not forget bread again',
       style: 'empty',
       jumboClass: 'jumbotron text-center',
       darkTheme: false,
@@ -57,9 +57,6 @@ class App extends Component {
             updateItem={this.handleUpdate}
             changeText={this.handleChangeText}
           ></Form>
-          <button onClick={this.changeText}>Change state of H3</button>
-          <button onClick={this.changeStyle}>Change style</button>
-          <button onClick={this.removeItem}>Remove Item</button>
         </div>
       </div>
     )
@@ -69,24 +66,11 @@ class App extends Component {
     e.preventDefault();
     console.log(this.state);
     
-    // alert('h3 will be changed')
     this.setState({
       text: 'Button has been clicked',
       jumboClass: 'jumbotron text-center jumboDark'
-      // darkTheme: !this.state.darkTheme
     })
     console.log(this.state);
-
-
-    // if(this.state.darkTheme === true){
-    //   this.setState({
-    //     jumboClass: 'jumbotron text-center jumboDark'
-    //   })
-    // } else {
-    //   this.setState({
-    //     jumboClass: 'jumbotron text-center'
-    //   })
-    // }
       
   } // end change text
 
@@ -166,7 +150,7 @@ class ShoppingList extends Component {
         <ul className="list-group">
           {
             this.props.list.map(product => {
-              return <li key={product.id} product={product} className="list-group-item">{product.item}<span className="controls"> <span className="edit" onClick={this.edit.bind(this, product)}>Edit</span> <span className="delete" onClick={this.delete.bind(this, product)}>Delete</span></span></li>
+              return <li key={product.id} product={product} className="list-group-item"><span className="list-item">{product.item}</span><span className="controls"> <span className="edit" onClick={this.edit.bind(this, product)}>Edit</span> <span className="delete" onClick={this.delete.bind(this, product)}>Delete</span></span></li>
             })
           }
           

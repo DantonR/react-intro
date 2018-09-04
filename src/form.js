@@ -10,12 +10,14 @@ class Form extends Component{
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <input className="form-control" ref="newItem" type="text" value={this.props.editingValue} onChange={this.onChange}/>
+        
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" ref="newItem" value={this.props.editingValue} onChange={this.onChange} aria-describedby="button-addon2" />
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" id="button-addon2 btn">{this.props.buttonText}</button>
           </div>
-          <div className="form-group">
-            <button type="submit" id="btn" className="btn btn-primary btn-lng btn-block">{this.props.buttonText}</button>
-          </div>
+        </div>
+
         </form>
       </div>
     )

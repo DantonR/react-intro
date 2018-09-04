@@ -6,10 +6,10 @@ h1 {
   /* color: #f06d06; */
   color: white;
   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
-  font-family: 'Teko', sans-serif;
-  font-size: 20px;
+  font-family: 'Calps', sans-serif;
+  font-size: 60px;
   text-transform: uppercase;
-  font-weight: 900
+  /* font-weight: 900 */
 }
 
 .display-4 {
@@ -18,15 +18,12 @@ h1 {
 
 h3 {
   color: white;
-  font-family: 'Teko', sans-serif;
-  font-size: 20px;
+  font-family: 'Bushcraft', sans-serif;
+  font-size: 30px;
 }
 
 .jumbotron {
-  /* background-color: rgb(236, 236, 236); */
-  background: #0f2027; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #0f2027, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #0f2027, #203a43, #2c5364);
+  background-color: #ff3e3d;
   border: 0px solid #f06d06;
   
   border-radius: 20px;
@@ -50,7 +47,6 @@ h3 {
 
 .edit, .delete {
   font-size: .8rem;
-  float: right;
 
 }
 
@@ -60,4 +56,19 @@ h3 {
 
 .delete {
   margin-right: 10px;
+}
+
+.list-item {
+  font-family: 'Calps';
+  font-size: 1.5rem;
+  align-self: flex-start
+}
+
+.list-group-item {
+  /* align-items: center;
+  justify-content: center; */
+  display: flex
+}
+.controls {
+  justify-self: flex-end
 }
